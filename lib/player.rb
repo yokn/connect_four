@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
 class Player
-  def initialize; end
+  attr_reader :piece
+  def initialize(piece)
+    @piece = piece
+  end
 end

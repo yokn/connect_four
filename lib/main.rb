@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'game'
+
 # INITIAL PLAN:
 # Game creates Board with 7x6 grid
 # Game creates two Players with two different pieces ⚪⚫
-# Game asks the user which piece they would like to go first⚪ or second⚫
 # While the game is not over:
 #   Game sets the current player
 #   Board keeps asking current player for a move until it receives a valid move
@@ -12,4 +13,4 @@
 #   Game#game_over? asks Board to check_win?
 #   If #game_over? Game displays the winner's name or declares that it is a tie
 
-# Game.new.start_game
+# Game.new.play_game

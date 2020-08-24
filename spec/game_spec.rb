@@ -8,12 +8,21 @@ describe Game do
     let(:expected_player1) { game.instance_variable_get(:@player1) }
     let(:expected_player2) { game.instance_variable_get(:@player2) }
     let(:current_player) { game.instance_variable_get(:@current_player) }
-    it 'sets the current player' do
+    let(:board) { game.instance_variable_get(:@board) }
+
+    it 'changes the current player to player1' do
+      game.change_current_player
       expect(current_player).to equal(expected_player1)
     end
-    it 'changes the current player' do
+    it 'changes the current player to player2' do
+      game.change_current_player
       game.change_current_player
       expect(current_player).to equal(expected_player2)
+    end
+    it 'tells the board to ask the user for a move' do
+      allow(board).to receive(:get_move)
+      expect(board).to receive(:get_move)
+      game.play_game
     end
   end
 end

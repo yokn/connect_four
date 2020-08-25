@@ -13,4 +13,4 @@ require_relative 'game'
 #   Game#game_over? asks Board to check_win?
 #   If #game_over? Game displays the winner's name or declares that it is a tie
 
-# Game.new.play_game
+Game.new.play_game

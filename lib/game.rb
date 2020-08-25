@@ -22,4 +22,17 @@ class Game
     @board.to_s
     # end
   end
+
+  def game_over?
+    if @board.check_win
+      display_winner
+      true
+    else
+      false
+    end
+  end
+
+  def display_winner
+    puts 'placeholder won!'
+  end
 end

@@ -19,14 +19,18 @@ class Board
   end
 
   def to_s
-    @board.each do |row|
+    @board.transpose.reverse.each_with_index do |row, _index|
       row.each_with_index do |column, index|
         print column
         print ' '
-        puts '' if index == 6
+        puts '' if index == 5
       end
     end
   end
+
+  # def check_win
+  #   false
+  # end
 
   private
 

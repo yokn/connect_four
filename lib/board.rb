@@ -13,7 +13,18 @@ class Board
     if valid_move?(row, column)
       add_move(row, column, piece)
     else
-      invalid_move(piece)
+      puts 'Invalid slot. Try again.'
+      get_move(piece)
+    end
+  end
+
+  def to_s
+    @board.each do |row|
+      row.each_with_index do |column, index|
+        print column
+        print ' '
+        puts '' if index == 6
+      end
     end
   end
 
@@ -42,10 +53,5 @@ class Board
     end
     # p 'column is full'
     99 # return an invalid integer to avoid returning a string and causing a mess
-  end
-
-  def invalid_move(piece)
-    puts 'Invalid slot. Try again.'
-    get_move(piece)
   end
 end

@@ -20,8 +20,11 @@ describe Game do
       expect(current_player).to equal(expected_player2)
     end
     it 'tells the board to ask the user for a move' do
-      allow(board).to receive(:get_move)
       expect(board).to receive(:get_move)
+      game.play_game
+    end
+    it 'tells the board to display the board' do
+      expect(board).to receive(:to_s)
       game.play_game
     end
   end

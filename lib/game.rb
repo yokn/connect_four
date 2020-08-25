@@ -7,8 +7,8 @@ class Game
   attr_reader :current_player
   def initialize
     @board = Board.new
-    @player1 = Player.new('⚪')
-    @player2 = Player.new('⚫')
+    @player1 = Player.new('W')
+    @player2 = Player.new('B')
   end
 
   def change_current_player
@@ -19,6 +19,7 @@ class Game
     # until game_over?
     change_current_player
     @board.get_move(@current_player.piece)
+    @board.to_s
     # end
   end
 end

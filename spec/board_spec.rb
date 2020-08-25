@@ -2,6 +2,7 @@
 
 require_relative '../lib/board'
 
+# rubocop:disable Metrics/BlockLength
 describe Board do
   context 'before the game starts' do
     subject(:board) { described_class.new }
@@ -11,21 +12,25 @@ describe Board do
     end
   end
   context 'while the game is not over' do
-    # before do
-    #   allow(board.get_move).to receive(gets)
-    # end
-    subject(:board) { described_class.new }
-    it 'asks the user for a move' do
-      expect(board).to receive(:player_input).and_return(1)
-      board.get_move('test')
-    end
     context 'when adding a move to the board' do
+      subject(:board) { described_class.new }
       context 'the move is valid' do
         it 'adds the move to the board' do
+          expect(board).to receive(:player_input).and_return(1)
+          board.get_move('test piece')
+          board_array = board.instance_variable_get(:@board)
+          slot = board_array[1][0]
+          expect(slot).to eq('test piece')
         end
       end
       context 'the move is invalid' do
         it 'does not add the move to the board' do
+          expect(board).to receive(:player_input).and_return(1).twice
+          board.get_move('test piece')
+          board_array = board.instance_variable_get(:@board)
+          board.get_move('another test piece')
+          slot = board_array[1][0]
+          expect(slot).to eq('test piece')
         end
       end
     end

@@ -46,5 +46,23 @@ describe Board do
         end
       end
     end
+    context 'when checking for a win' do
+      subject(:board) { described_class.new }
+      it 'same player has four horizontal pieces' do
+        board.instance_variable_set(:@board, [['W', 'W', 'W', 'W', '-', '-']])
+        expect(board.check_win('W')).to be true
+      end
+      it 'same player has four vertical pieces' do
+        board.instance_variable_set(:@board, [['B', '-', '-', '-', '-', '-'],
+                                              ['B', '-', '-', '-', '-', '-'],
+                                              ['B', '-', '-', '-', '-', '-'],
+                                              ['B', '-', '-', '-', '-', '-']])
+        expect(board.check_win('B')).to be true
+      end
+      it 'same player has four diagonal pieces' do
+      end
+      it 'no player has four adjacent pieces' do
+      end
+    end
   end
 end

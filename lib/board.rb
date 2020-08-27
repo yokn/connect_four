@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# require 'matrix'
+
 class Board
   attr_reader :board
   def initialize(board = Array.new(6) { Array.new(7, '-') })
@@ -28,11 +30,59 @@ class Board
     end
   end
 
-  # def check_win
+  def check_win(piece)
+    true if
+      check_column(piece) ||
+      check_row(piece) # ||
+    # check_diagonal(piece)
+  end
+
+  private
+
+  def check_column(piece)
+    @board.each do |row|
+      count = []
+      row.each do |column|
+        count << column
+      end
+      return true if counter(count, piece)
+    end
+    false
+  end
+
+  def check_row(piece)
+    @board.transpose.reverse.each do |row|
+      count = []
+      row.each do |column|
+        count << column
+      end
+      return true if counter(count, piece)
+    end
+    false
+  end
+
+  # def check_diagonal(piece)
+  #   diagonal_board = []
+  #   diagonal_board << (0..5).collect { |i| @board[i][i] }
+  #   p diagonal_board
+
+  #   diagonal_board.each do |row|
+  #     count = []
+  #     row.each do |column|
+  #       count << column
+  #     end
+  #     return true if counter(count, piece)
+  #   end
   #   false
   # end
 
-  private
+  def counter(count, piece)
+    # p count
+    (count[0] == piece) && (count[1] == piece) && (count[2] == piece) && (count[3] == piece) ||
+      (count[1] == piece) && (count[2] == piece) && (count[3] == piece) && (count[4] == piece) ||
+      (count[2] == piece) && (count[3] == piece) && (count[4] == piece) && (count[5] == piece) ||
+      (count[3] == piece) && (count[4] == piece) && (count[5] == piece) && (count[6] == piece)
+  end
 
   def player_input
     p 'Which row to drop the piece? (0-6 for now)'

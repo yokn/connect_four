@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../lib/game'
+
+# rubocop:disable Metrics/BlockLength
 describe Game do
   context 'while the game is not over' do
     subject(:game) { described_class.new }
@@ -26,9 +28,9 @@ describe Game do
       expect(board).to receive(:to_s)
       game.play_game
     end
-    # it 'tells the board to check if there is a win' do
-    #   expect(board).to receive(:check_win)
-    #   game.play_game
-    # end
+    it 'tells the board to check if there is a win' do
+      expect(board).to receive(:check_win)
+      game.play_game
+    end
   end
 end

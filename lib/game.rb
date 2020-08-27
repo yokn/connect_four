@@ -16,15 +16,16 @@ class Game
   end
 
   def play_game
-    # until game_over?
-    change_current_player
-    @board.get_move(@current_player.piece)
-    @board.to_s
-    # end
+    @current_player = @player2 # fix this later
+    until game_over?
+      change_current_player
+      @board.get_move(@current_player.piece)
+      @board.to_s
+    end
   end
 
   def game_over?
-    if @board.check_win
+    if @board.check_win(@current_player.piece)
       display_winner
       true
     else

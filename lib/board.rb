@@ -45,7 +45,7 @@ class Board
       row.each do |column|
         count << column
       end
-      return true if counter(count, piece)
+      return true if counter(count, piece, 7)
     end
     false
   end
@@ -56,32 +56,22 @@ class Board
       row.each do |column|
         count << column
       end
-      return true if counter(count, piece)
+      return true if counter(count, piece, 6)
     end
     false
   end
 
-  # def check_diagonal(piece)
-  #   diagonal_board = []
-  #   diagonal_board << (0..5).collect { |i| @board[i][i] }
-  #   p diagonal_board
+  def check_diagonal(piece); end
 
-  #   diagonal_board.each do |row|
-  #     count = []
-  #     row.each do |column|
-  #       count << column
-  #     end
-  #     return true if counter(count, piece)
-  #   end
-  #   false
-  # end
-
-  def counter(count, piece)
-    # p count
-    (count[0] == piece) && (count[1] == piece) && (count[2] == piece) && (count[3] == piece) ||
-      (count[1] == piece) && (count[2] == piece) && (count[3] == piece) && (count[4] == piece) ||
-      (count[2] == piece) && (count[3] == piece) && (count[4] == piece) && (count[5] == piece) ||
-      (count[3] == piece) && (count[4] == piece) && (count[5] == piece) && (count[6] == piece)
+  def counter(count, piece, limit)
+    p count
+    (0..limit).each do |number|
+      return true if (count[number] == piece) &&
+                     (count[number + 1] == piece) &&
+                     (count[number + 2] == piece) &&
+                     (count[number + 3] == piece)
+    end
+    false
   end
 
   def player_input

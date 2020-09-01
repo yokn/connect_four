@@ -13,4 +13,7 @@ require_relative 'game'
 #   Game#game_over? asks Board to check_win?
 #   If #game_over? Game displays the winner's name or declares that it is a tie
 
-Game.new.play_game
+# Game.new.play_game
+
+# TODO: Fix board dimensions(6x7 to 7x6)
+# TODO: Use doubles to fix Game's tests

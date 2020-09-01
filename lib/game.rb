@@ -34,6 +34,6 @@ class Game
   end
 
   def display_winner
-    puts 'placeholder won!'
+    puts "#{@current_player.piece} won!"
   end
 end

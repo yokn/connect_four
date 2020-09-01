@@ -60,8 +60,19 @@ describe Board do
         expect(board.check_win('B')).to be true
       end
       it 'same player has four diagonal pieces' do
+        board.instance_variable_set(:@board, [['B', '-', '-', '-', '-', '-'],
+                                              ['-', 'B', '-', '-', '-', '-'],
+                                              ['-', '-', 'B', '-', '-', '-'],
+                                              ['-', '-', '-', 'B', '-', '-']])
+        expect(board.check_win('B')).to be true
       end
       it 'no player has four adjacent pieces' do
+        board.instance_variable_set(:@board, [['-', 'W', '-', 'W', 'B', '-'],
+                                              ['-', '-', 'B', '-', '-', '-'],
+                                              ['-', 'W', '-', 'W', '-', '-'],
+                                              ['B', '-', 'B', '-', 'B', '-']])
+        expect(board.check_win('B')).to be_falsy
+        expect(board.check_win('W')).to be_falsy
       end
     end
   end

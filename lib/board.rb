@@ -32,9 +32,9 @@ class Board
 
   def check_win(piece)
     true if
-      check_column(piece) ||
-      check_row(piece) # ||
-    # check_diagonal(piece)
+     check_column(piece) ||
+     check_row(piece) ||
+     check_diagonal(piece)
   end
 
   private
@@ -61,10 +61,24 @@ class Board
     false
   end
 
-  def check_diagonal(piece); end
+  def check_diagonal(piece)
+    reconstructed_array = []
+    @board.each do |row|
+      # puts "row is #{row}"
+      row.each_with_index do |slot, index|
+        # puts "slot is #{slot}"
+        # puts "index is #{index}"
+        reconstructed_array[index] = piece if slot == piece
+      end
+      current_piece = reconstructed_array.count(piece)
+      opponent_piece = piece == 'W' ? reconstructed_array.count('B') : reconstructed_array.count('W')
+      return true if (current_piece - opponent_piece) >= 4
+    end
+    false
+  end
 
   def counter(count, piece, limit)
-    p count
+    # p count
     (0..limit).each do |number|
       return true if (count[number] == piece) &&
                      (count[number + 1] == piece) &&
